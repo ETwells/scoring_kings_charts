@@ -1,5 +1,5 @@
 select
-    season, 
+    season,
     season_end_year,
     league,
     player,

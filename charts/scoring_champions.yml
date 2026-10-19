@@ -16,12 +16,8 @@ queries:
     sql: |
       SELECT player, titles
       FROM main.mart_title_winners
-      WHERE titles >= 2
+      WHERE titles >= 3
       ORDER BY titles DESC
-  overall:
-    sql: |
-      SELECT scope, titles, avg_ppg, min_ppg, max_ppg
-      FROM main.mart_avg_ppg_overall
 
 charts:
   ppg_trend:
@@ -35,17 +31,16 @@ charts:
     query: avg_by_decade
     x: decade
     y: avg_ppg
+    sort: { by: decade, order: asc }
+    style:
+      orientation: vertical
     title: "Average winning PPG by decade"
   winners_bar:
     type: bar
     query: top_winners
     x: player
     y: titles
-    title: "Scoring titles (2 or more)"
-  overall_table:
-    type: table
-    query: overall
-    title: "Average PPG of scoring title winners"
+    title: "Scoring titles (3 or more)"
 
 rows:
   - title: "Trend"
