@@ -1,0 +1,7 @@
+nba_scoring:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: nba.duckdb
+      threads: 1

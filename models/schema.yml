@@ -1,0 +1,28 @@
+version: 2
+
+seeds:
+  - name: nba_scoring_champions
+    columns:
+      - name: season
+        data_tests: [unique, not_null]
+      - name: season_end_year
+        data_tests: [unique, not_null]
+      - name: league
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["BAA", "NBA"]
+      - name: player
+        data_tests: [not_null]
+      - name: ppg
+        data_tests: [not_null]
+
+models:
+  - name: mart_avg_ppg_overall
+    columns:
+      - name: scope
+        data_tests: [unique, not_null]
+  - name: mart_title_winners
+    columns:
+      - name: player
+        data_tests: [unique, not_null]

@@ -1,0 +1,57 @@
+title: "NBA scoring champions"
+source: nba
+
+queries:
+  ppg_by_season:
+    sql: |
+      SELECT season_end_year, ppg
+      FROM main.stg_scoring_champions
+      ORDER BY season_end_year
+  avg_by_decade:
+    sql: |
+      SELECT decade, avg_ppg
+      FROM main.mart_avg_ppg_by_decade
+      ORDER BY decade_start
+  top_winners:
+    sql: |
+      SELECT player, titles
+      FROM main.mart_title_winners
+      WHERE titles >= 2
+      ORDER BY titles DESC
+  overall:
+    sql: |
+      SELECT scope, titles, avg_ppg, min_ppg, max_ppg
+      FROM main.mart_avg_ppg_overall
+
+charts:
+  ppg_trend:
+    type: line
+    query: ppg_by_season
+    x: season_end_year
+    y: ppg
+    title: "Winning PPG by season"
+  decade_avg:
+    type: bar
+    query: avg_by_decade
+    x: decade
+    y: avg_ppg
+    title: "Average winning PPG by decade"
+  winners_bar:
+    type: bar
+    query: top_winners
+    x: player
+    y: titles
+    title: "Scoring titles (2 or more)"
+  overall_table:
+    type: table
+    query: overall
+    title: "Average PPG of scoring title winners"
+
+rows:
+  - title: "Trend"
+    cols:
+      - ppg_trend
+  - title: "Breakdowns"
+    cols:
+      - decade_avg
+      - winners_bar

@@ -1,0 +1,4 @@
+sources:
+  nba:
+    type: duckdb
+    path: ./nba.duckdb

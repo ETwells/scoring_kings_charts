@@ -1,0 +1,21 @@
+name: nba_scoring
+version: "1.0.0"
+config-version: 2
+profile: nba_scoring
+
+seed-paths: ["seeds"]
+model-paths: ["models"]
+
+models:
+  nba_scoring:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+
+seeds:
+  nba_scoring:
+    nba_scoring_champions:
+      +column_types:
+        ppg: double
+        season_end_year: integer
